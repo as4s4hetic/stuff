@@ -24,6 +24,8 @@
 (define-key *root-map* (kbd "C-l") "exec slock")
 ;; Telegram
 (define-key *root-map* (kbd "t") "exec telegram-desktop")
+;; Discord
+(define-key *root-map* (kbd "t") "exec discord")
 
 ;; Web jump (works for Google and Imdb)
 (defmacro make-web-jump (name prefix)
