@@ -1,8 +1,14 @@
 ;; -*-lisp-*-
 ;;
-;; Here is a sample .stumpwmrc file
+(load "~/quicklisp/setup.lisp")
 
 (in-package :stumpwm)
+
+(setf *mouse-focus-policy* :click)
+
+(setf *screen-mode-line-format* (list "%W^>%d"))
+(setf *time-modeline-string* "%a %b %e %k:%M")
+;; (enable-mode-line (current-screen) (current-head) t)
 
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-z"))
@@ -14,10 +20,8 @@
     (when cmd
       (eval-command cmd t))))
 
-;; Read some doc
-(define-key *root-map* (kbd "d") "exec gv")
 ;; Browse somewhere
-(define-key *root-map* (kbd "b") "exec firefox")
+(define-key *root-map* (kbd "b") "exec firefox-nightly")
 ;; Ssh somewhere
 (define-key *root-map* (kbd "C-s") "colon1 exec xterm -e ssh ")
 ;; Lock screen
@@ -25,7 +29,13 @@
 ;; Telegram
 (define-key *root-map* (kbd "t") "exec telegram-desktop")
 ;; Discord
-(define-key *root-map* (kbd "t") "exec discord")
+(define-key *root-map* (kbd "d") "exec discord")
+;; LMS
+;; (define-key *root-map* (kbd "L") "exec firefox https://app.lms.unimelb.edu.au/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_41_1")
+;; Print Screen
+(define-key *root-map* (kbd "SunPrint_Screen") "exec maim -s ~/$(date +%s).png")
+
+(define-key *root-map* (kbd "n") "exec")
 
 ;; Web jump (works for Google and Imdb)
 (defmacro make-web-jump (name prefix)
@@ -34,11 +44,8 @@
     (run-shell-command (concatenate 'string ,prefix search))))
 
 (make-web-jump "google" "firefox http://www.google.fr/search?q=")
-(make-web-jump "imdb" "firefox http://www.imdb.com/find?q=")
 
-;; C-t M-s is a terrble binding, but you get the idea.
 (define-key *root-map* (kbd "M-s") "google")
-;;(define-key *root-map* (kbd "i") "imdb") don't need imdb 
 
 ;; Message window font
 (set-font "-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15")

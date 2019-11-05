@@ -33,4 +33,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 xbindkeys
+xinput set-prop "SynPS/2 Synaptics TouchPad" 286 1
 exec stumpwm
+

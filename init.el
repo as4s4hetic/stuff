@@ -17,7 +17,7 @@
  '(inhibit-default-init t)
  '(package-selected-packages
    (quote
-    (common-lisp-snippets adjust-parens jedi elpy php-mode load-dir ac-slime evil ace-window achievements 2048-game zenburn-theme))))
+    (pdf-tools telega exwm matlab-mode irony nyan-mode emojify cyberpunk-theme anaconda-mode maces-game common-lisp-snippets adjust-parens jedi elpy php-mode load-dir ac-slime evil ace-window achievements 2048-game zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -25,12 +25,16 @@
  ;; If there is more than one, they won't work right.
  )
 
+(global-set-key (kbd "C-h") 'delete-backward-char)
+
 ;; THINGS TO MAKE IT LOOK PRETTY
 (require 'zenburn-theme)
+;; KILL EYES
+;;(require 'cyberpunk-theme)
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
-(global-display-line-numbers-mode)
+; (global-display-line-numbers-mode)
 
 
 ;; DIRED THINGS
@@ -48,5 +52,14 @@
 ;; ORG MODE
 (with-eval-after-load 'org       
   (setq org-startup-indented t) ; Enable `org-indent-mode' by default
-  (add-hook 'org-mode-hook #'visual-line-mode)
-  (add-hook 'org-mode-hook #'flyspell-mode))
+  (add-hook 'org-mode-hook #'visual-line-mode))
+
+;; STORE LINK
+(global-set-key (kbd "M-n") 'org-store-link)
+
+;; TELEGA
+(eval-after-load 'telega-chat
+  '(define-key telega-chat-mode-map (kbd "C-c i") 'telega-chatbuf-attach-photo))
+
+;; PDF
+(pdf-tools-install)
